@@ -1,0 +1,40 @@
+<section *ngIf="!addNoteSection">
+
+    <app-add-note (noteAdd)="addNote($event)" (noteDiscard)="discardNote($event)"></app-add-note>
+
+</section>
+
+<section *ngIf="!editNoteSection">
+
+    <app-edit-note (noteEdit)="editNote($event)" (noteDiscard)="discardNote($event)"></app-edit-note>
+
+</section>
+
+
+<section *ngIf="addNoteSection" class="user-select-none">
+
+    <section *ngIf="editNoteSection">
+
+        <h2 class="text-center my-3">Add Notes</h2>
+
+        <div class=" display-4 text-dark mx-auto text-center my-10" (click)="adeeb()">
+            <i class="bi bg-light bi-plus border border-secondary rounded pe-auto" id="plus"></i>
+        </div>
+
+        <h3 class="container">Your Notes</h3>
+
+        <div *ngIf="this.notes.length===0; else elseBlock">
+            <h5 class="container">No Notes To Display</h5>
+        </div>
+
+        <ng-template #elseBlock>
+            <ul class="container" *ngFor="let note of notes; let i= index">
+                <app-note-item [note]="note" [index]="i" (noteDelete)="deleteNote($event)"
+                    (buttonEdit)="editPage($event)">
+                </app-note-item>
+            </ul>
+        </ng-template>
+
+    </section>
+
+</section>

@@ -1,0 +1,34 @@
+<div class="text-center my-3">
+
+    <label for="exampleFormControlTextarea1">
+        <h3>Edit Your Notes</h3>
+    </label>
+
+</div>
+
+
+<form class="container my-3">
+
+    <div class="form-group">
+        <label for="title">
+            <h4>Note Title:</h4>
+        </label>
+        <input type="text" [(ngModel)]="title" class="form-control bg-secondary my-2 text-white" name="title" id="title"
+            aria-describedby="emailHelp">
+    </div>
+
+    <div class="form-group">
+        <label for="title">
+            <h5>Note: </h5>
+        </label>
+        <textarea class="form-control bg-secondary text-white" name="desc" id="desc" [(ngModel)]="desc"
+            rows="10"></textarea>
+    </div>
+
+    <div *ngIf="">
+        <button type="submit" class="btn btn-primary my-3" (click)="onEdit()">Edit Note</button>
+    </div>
+
+    <button class="btn btn-danger mx-3 my-2" (click)="onDiscard()">Discard</button>
+
+</form>
