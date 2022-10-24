@@ -1,19 +1,20 @@
-<section *ngIf="!addNoteSection">
+<section *ngIf="addNoteSection">
 
     <app-add-note (noteAdd)="addNote($event)" (noteDiscard)="discardNote($event)"></app-add-note>
 
 </section>
 
-<section *ngIf="!editNoteSection">
+<section *ngIf="editNoteSection">
 
-    <app-edit-note (noteEdit)="editNote($event)" (noteDiscard)="discardNote($event)"></app-edit-note>
+    <app-edit-note (noteEdit)="editNote($event)" [indexNote]="editCurrentNote" (noteDiscard)="discardNote($event)">
+    </app-edit-note>
 
 </section>
 
 
-<section *ngIf="addNoteSection" class="user-select-none">
+<section *ngIf="!addNoteSection" class="user-select-none">
 
-    <section *ngIf="editNoteSection">
+    <section *ngIf="!editNoteSection">
 
         <h2 class="text-center my-3">Add Notes</h2>
 

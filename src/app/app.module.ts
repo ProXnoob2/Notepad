@@ -8,6 +8,7 @@ import { AddNoteComponent } from './MyComponents/add-note/add-note.component';
 import { NoteItemComponent } from './MyComponents/note-item/note-item.component';
 import { FormsModule } from '@angular/forms';
 import { EditNoteComponent } from './MyComponents/edit-note/edit-note.component';
+import { AboutComponent } from './MyComponents/about/about.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { EditNoteComponent } from './MyComponents/edit-note/edit-note.component'
     NotepadsComponent,
     AddNoteComponent,
     NoteItemComponent,
-    EditNoteComponent
+    EditNoteComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

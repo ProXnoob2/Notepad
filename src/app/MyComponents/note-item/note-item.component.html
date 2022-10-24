@@ -1,5 +1,8 @@
-<div class="container border border-secondary rounded my-4 w-80 p-3">
-    <h4 class="my-1">{{index+1}}. {{note.title}}</h4>
+<div class="container border border-secondary rounded my-4 mw-80 p-3">
+    <div class="d-flex flex-row">
+        <h4 class="my-1">{{index+1}}.</h4>
+        <h4 class="my-1 mx-1">{{note.title}}</h4>
+    </div>
     <p class="mx-4">{{note.desc}}</p>
     <button class="btn btn-sm btn-danger my-2 mx-4" (click)="onClick(note)">Delete</button>
     <button class="btn btn-sm btn-primary" (click)="onclickEdit(note)">Edit</button>

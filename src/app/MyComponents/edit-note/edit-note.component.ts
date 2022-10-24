@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Note } from '../../Note';
-import { notesData } from '../notes.data';
 
 @Component({
   selector: 'app-edit-note',
@@ -9,7 +8,8 @@ import { notesData } from '../notes.data';
 })
 export class EditNoteComponent implements OnInit {
 
-  notes: Note[] = notesData;
+  @Input()
+  indexNote!: Note;
 
   title!: string;
   desc!: string;
@@ -20,6 +20,8 @@ export class EditNoteComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.title = this.indexNote.title;
+    this.desc = this.indexNote.desc
   }
 
   onEdit() {
