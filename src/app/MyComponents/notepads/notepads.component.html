@@ -12,30 +12,24 @@
 </section>
 
 
-<section *ngIf="!addNoteSection" class="user-select-none">
+<section *ngIf="!addNoteSection && !editNoteSection" class="user-select-none position-relative notes-container">
 
-    <section *ngIf="!editNoteSection">
+    <h3 class="container my-4 text-center">Your Notes</h3>
 
-        <h2 class="text-center my-3">Add Notes</h2>
+    <div *ngIf="this.notes.length===0; else elseBlock">
+        <h5 class="container text-center">No Notes To Display</h5>
+    </div>
 
-        <div class=" display-4 text-dark mx-auto text-center my-10" (click)="adeeb()">
-            <i class="bi bg-light bi-plus border border-secondary rounded pe-auto" id="plus"></i>
-        </div>
+    <ng-template #elseBlock>
+        <ul class="container" *ngFor="let note of notes; let i= index">
+            <app-note-item [note]="note" [index]="i" (noteDelete)="deleteNote($event)" (buttonEdit)="editPage($event)">
+            </app-note-item>
+        </ul>
+    </ng-template>
 
-        <h3 class="container">Your Notes</h3>
+    <div class="display-5 bg-danger text-white rounded-circle position-fixed icon">
+        <span class="bi bi-plus" (click)="adeeb()"></span>
+    </div>
 
-        <div *ngIf="this.notes.length===0; else elseBlock">
-            <h5 class="container">No Notes To Display</h5>
-        </div>
-
-        <ng-template #elseBlock>
-            <ul class="container" *ngFor="let note of notes; let i= index">
-                <app-note-item [note]="note" [index]="i" (noteDelete)="deleteNote($event)"
-                    (buttonEdit)="editPage($event)">
-                </app-note-item>
-            </ul>
-        </ng-template>
-
-    </section>
 
 </section>

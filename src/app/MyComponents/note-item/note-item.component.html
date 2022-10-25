@@ -1,9 +1,11 @@
-<div class="container border border-secondary rounded my-4 mw-80 p-3">
+<div class="container shadow-lg p-3 mb-5 bg-white rounded p-3 d-flex flex-column" id="bg">
     <div class="d-flex flex-row">
         <h4 class="my-1">{{index+1}}.</h4>
         <h4 class="my-1 mx-1">{{note.title}}</h4>
     </div>
     <p class="mx-4">{{note.desc}}</p>
-    <button class="btn btn-sm btn-danger my-2 mx-4" (click)="onClick(note)">Delete</button>
-    <button class="btn btn-sm btn-primary" (click)="onclickEdit(note)">Edit</button>
+    <div>
+        <button class="btn btn-sm btn-danger my-2 mx-4" (click)="onClick(note)">Delete</button>
+        <button class="btn btn-sm btn-primary" (click)="onclickEdit(note)">Edit</button>
+    </div>
 </div>
