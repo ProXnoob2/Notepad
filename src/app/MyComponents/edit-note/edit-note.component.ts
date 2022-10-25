@@ -4,7 +4,7 @@ import { Note } from '../../Note';
 @Component({
   selector: 'app-edit-note',
   templateUrl: './edit-note.component.html',
-  styleUrls: ['./edit-note.component.css']
+  styleUrls: ['./edit-note.component.scss']
 })
 export class EditNoteComponent implements OnInit {
 

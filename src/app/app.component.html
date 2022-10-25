@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg bg-dark user-select-none">
   <div class="container-fluid">
     <a class="navbar-brand text-white" routerLink="/">Notepad</a>
+    <div class="mobile-screens">
+      <span *ngIf="theme === 'light-theme'" class="bi bi-moon-stars text-white" (click)="switchTheme()"></span>
+      <span *ngIf="theme === 'dark-theme'" class="bi bi-sun" (click)="switchTheme()"></span>
+    </div>
     <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
       aria-label="Toggle navigation">
@@ -10,6 +14,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active text-white mx-3" aria-current="page" routerLink="/about">About</a>
+        </li>
+        <li class="nav-item d-flex justify-content-right align-items-center laptop-screens">
+          <!-- <button class="switch" (click)="switchTheme()">
+            {{theme === "light-theme" ? "Switch to dark" : "Switch to light"}}
+          </button> -->
+          <span *ngIf="theme === 'light-theme'" class="bi bi-moon-stars text-white" (click)="switchTheme()"></span>
+          <span *ngIf="theme === 'dark-theme'" class="bi bi-sun" (click)="switchTheme()"></span>
         </li>
       </ul>
       <!-- <form class="d-flex" role="search">

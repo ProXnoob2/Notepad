@@ -1,0 +1,16 @@
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.mobile-screens {
+    @media (min-width: 992px) {
+        display: none;
+    }
+}
+
+.laptop-screens {
+    @media (max-width: 993px) {
+        display: none !important;
+    }
+}

@@ -5,7 +5,7 @@ import { Note } from '../../Note';
 @Component({
   selector: 'app-notepads',
   templateUrl: './notepads.component.html',
-  styleUrls: ['./notepads.component.css']
+  styleUrls: ['./notepads.component.scss']
 })
 export class NotepadsComponent implements OnInit {
 
