@@ -13,7 +13,7 @@
         <label for="title">
             <h4>Note Title:</h4>
         </label>
-        <input type="text" [(ngModel)]="title" class="form-control bg-secondary my-2 text-white" name="title" id="title"
+        <input type="text" [(ngModel)]="title" class="form-control title text-white my-2" name="title" id="title"
             aria-describedby="emailHelp">
     </div>
 
@@ -21,8 +21,7 @@
         <label for="title">
             <h5>Note: </h5>
         </label>
-        <textarea class="form-control bg-secondary text-white" name="desc" id="desc" [(ngModel)]="desc"
-            rows="10"></textarea>
+        <textarea class="form-control desc text-white" name="desc" id="desc" [(ngModel)]="desc" rows="10"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary my-3" (click)="onEdit()">Edit Note</button>
