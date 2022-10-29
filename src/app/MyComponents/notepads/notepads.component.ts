@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Note } from '../../Note';
-// import { notesData } from '../notes.data';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-notepads',
@@ -16,7 +18,7 @@ export class NotepadsComponent implements OnInit {
   index!: number
   localItem!: string | null;
 
-  constructor() {
+  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) {
     this.localItem = localStorage.getItem("notes");
     if (this.localItem == null) {
       this.notes = []
@@ -26,10 +28,31 @@ export class NotepadsComponent implements OnInit {
     }
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      panelClass: 'custom-snackbar',
+    });
+  }
+
   ngOnInit(): void {
   }
 
+  openConfirmationDialog(number: number, note?: Note) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: { number: number }
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        note?.active ? this.deleteNote(note) : this.deleteAll();
+      }
+    })
+  }
+
   deleteNote(note: Note) {
+    this.openSnackBar('Note Deleted', 'Dismiss');
     console.log(note)
     const index = this.notes.indexOf(note);
     this.notes.splice(index, 1)
@@ -67,5 +90,13 @@ export class NotepadsComponent implements OnInit {
     this.index = index
     this.editCurrentNote = this.notes[index]
     this.editNoteSection = true
+  }
+
+  deleteAll() {
+    this.openSnackBar('All Notes Deleted', 'Dismiss');
+    if (this.localItem !== null) {
+      this.notes = [];
+    }
+    localStorage.setItem("notes", JSON.stringify(this.notes));
   }
 }

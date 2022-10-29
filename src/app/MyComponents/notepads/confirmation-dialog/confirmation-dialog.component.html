@@ -1,0 +1,7 @@
+<section class="d-flex flex-column">
+    <p>Are You Sure You Want To Delete {{ data.number === 0 ? 'All The Notes' : "This Note" }} ?</p>
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-primary btn-sm px-4 py-1" (click)="close()">No</button>
+        <button class="btn btn-danger btn-sm px-4 py-1" (click)="close(true)">Yes</button>
+    </div>
+</section>

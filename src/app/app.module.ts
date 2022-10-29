@@ -11,6 +11,11 @@ import { NoteItemComponent } from './MyComponents/note-item/note-item.component'
 import { FormsModule } from '@angular/forms';
 import { EditNoteComponent } from './MyComponents/edit-note/edit-note.component';
 import { AboutComponent } from './MyComponents/about/about.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './MyComponents/notepads/confirmation-dialog/confirmation-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -19,15 +24,19 @@ import { AboutComponent } from './MyComponents/about/about.component';
     AddNoteComponent,
     NoteItemComponent,
     EditNoteComponent,
-    AboutComponent
+    AboutComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
+    MatDialogModule,
+    MatSnackBarModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     NgxGoogleAnalyticsModule.forRoot('G-FTYW6Z55V5'),
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

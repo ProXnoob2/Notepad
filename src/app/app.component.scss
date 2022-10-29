@@ -6,6 +6,8 @@ body {
 
 .mobile-screens {
     cursor: pointer;
+    display: flex;
+    justify-content: right;
 
     @media (min-width: 992px) {
         display: none;
@@ -16,6 +18,15 @@ body {
     cursor: pointer;
 
     @media (max-width: 993px) {
+        display: none !important;
+    }
+}
+
+.loginm {
+    display: flex;
+    justify-content: left;
+
+    @media (min-width: 992px) {
         display: none !important;
     }
 }

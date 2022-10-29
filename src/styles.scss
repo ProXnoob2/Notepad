@@ -18,3 +18,18 @@ body {
     --input-color: #2b2b2b;
     transition: all 0.2s ease;
 }
+
+.custom-snackbar {
+    color: white;
+    background-color: rgb(23, 23, 23);
+    bottom: 10px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}

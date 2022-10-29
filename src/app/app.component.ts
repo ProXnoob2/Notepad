@@ -9,7 +9,7 @@ import { Component, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angula
 })
 export class AppComponent implements OnInit {
 
-  theme: Theme = 'light-theme';
+  theme: Theme = 'dark-theme';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

@@ -24,8 +24,8 @@
         <textarea class="form-control desc text-white" name="desc" id="desc" [(ngModel)]="desc" rows="10"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary my-3" [disabled]="!title?.length || !desc?.length"
-        (click)="onSubmit()">Add Note</button>
+    <button type="submit" class="btn btn-primary my-3" (click)="onSubmit()">Add Note</button>
+    <!-- [disabled]="!title?.length || !desc?.length" -->
 
     <button class="btn btn-danger mx-3 my-2" (click)="onDiscard()">Discard</button>
 

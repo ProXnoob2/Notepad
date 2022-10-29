@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Note } from '../../Note';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-note',
@@ -17,14 +18,24 @@ export class EditNoteComponent implements OnInit {
   @Output() noteEdit: EventEmitter<Note> = new EventEmitter()
   @Output() noteDiscard: EventEmitter<Note> = new EventEmitter()
 
-  constructor() { }
+  constructor(public _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.title = this.indexNote.title;
     this.desc = this.indexNote.desc
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      panelClass: 'custom-snackbar',
+    });
+  }
+
   onEdit() {
+    if (!this.title || !this.desc) {
+      return this.openSnackBar("Title Or Description Can't Be Empty !", "OK")
+    }
     const note = {
       sno: 0,
       title: this.title,
@@ -32,6 +43,7 @@ export class EditNoteComponent implements OnInit {
       active: true
     }
     this.noteEdit.emit(note)
+    this.openSnackBar('Note Edited', 'Dismiss');
   }
 
   onDiscard() {
