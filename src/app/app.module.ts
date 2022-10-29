@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './MyComponents/notepads/confirmation-dialog/confirmation-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ConfirmationDialogComponent } from './MyComponents/notepads/confirmatio
     ConfirmationDialogComponent
   ],
   imports: [
+    MatIconModule,
     MatDialogModule,
     MatSnackBarModule,
     BrowserModule,

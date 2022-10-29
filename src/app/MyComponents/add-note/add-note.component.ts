@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { GlobalService } from 'src/app/Services/global-service/global.service';
 import { Note } from '../../Note';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-note',
@@ -15,21 +15,14 @@ export class AddNoteComponent implements OnInit {
   @Output() noteAdd: EventEmitter<Note> = new EventEmitter()
   @Output() noteDiscard: EventEmitter<Note> = new EventEmitter()
 
-  constructor(public _snackBar: MatSnackBar) { }
+  constructor(private globalService: GlobalService) { }
 
   ngOnInit(): void {
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-      panelClass: 'custom-snackbar',
-    });
-  }
-
   onSubmit() {
     if (!this.title || !this.desc) {
-      return this.openSnackBar("Title Or Description Can't Be Empty !", "OK")
+      return this.globalService.openSnackBar("Title Or Description Can't Be Empty !")
     }
     const note = {
       sno: 0,
@@ -38,7 +31,7 @@ export class AddNoteComponent implements OnInit {
       active: true
     }
     this.noteAdd.emit(new Note(note))
-    this.openSnackBar('Note Added', 'Dismiss');
+    this.globalService.openSnackBar('Note Added');
   }
 
   onDiscard() {

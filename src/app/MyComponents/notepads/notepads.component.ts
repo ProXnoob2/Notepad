@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { GlobalService } from 'src/app/Services/global-service/global.service';
 import { Note } from '../../Note';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-notepads',
@@ -18,7 +18,7 @@ export class NotepadsComponent implements OnInit {
   index!: number
   localItem!: string | null;
 
-  constructor(public dialog: MatDialog, public _snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, private globalService: GlobalService) {
     this.localItem = localStorage.getItem("notes");
     if (this.localItem == null) {
       this.notes = []
@@ -26,13 +26,6 @@ export class NotepadsComponent implements OnInit {
     else {
       this.notes = JSON.parse(this.localItem);
     }
-  }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 3000,
-      panelClass: 'custom-snackbar',
-    });
   }
 
   ngOnInit(): void {
@@ -52,7 +45,7 @@ export class NotepadsComponent implements OnInit {
   }
 
   deleteNote(note: Note) {
-    this.openSnackBar('Note Deleted', 'Dismiss');
+    this.globalService.openSnackBar('Note Deleted');
     console.log(note)
     const index = this.notes.indexOf(note);
     this.notes.splice(index, 1)
@@ -93,7 +86,7 @@ export class NotepadsComponent implements OnInit {
   }
 
   deleteAll() {
-    this.openSnackBar('All Notes Deleted', 'Dismiss');
+    this.globalService.openSnackBar('All Notes Deleted');
     if (this.localItem !== null) {
       this.notes = [];
     }
