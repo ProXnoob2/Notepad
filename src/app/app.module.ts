@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './MyComponents/notepads/confirmation-dialog/confirmation-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatMenuModule } from '@angular/material/menu';
+import { LoginComponent } from './MyComponents/login/login.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AuthService } from './Services/auth-service/auth.service';
+import { UserService } from './Services/user-service/user.service';
 
 
 @NgModule({
@@ -26,7 +35,8 @@ import { MatIconModule } from '@angular/material/icon';
     NoteItemComponent,
     EditNoteComponent,
     AboutComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    LoginComponent
   ],
   imports: [
     MatIconModule,
@@ -38,9 +48,17 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     NgxGoogleAnalyticsModule.forRoot('G-FTYW6Z55V5'),
     NgxGoogleAnalyticsRouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule,
+    MatMenuModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

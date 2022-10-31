@@ -5,28 +5,37 @@ body {
 }
 
 .mobile-screens {
-    cursor: pointer;
-    display: flex;
-    justify-content: right;
-
-    @media (min-width: 992px) {
-        display: none;
+    @media (min-width: 769px) {
+        display: none !important;
     }
 }
 
 .laptop-screens {
-    cursor: pointer;
-
-    @media (max-width: 993px) {
+    @media (max-width: 769px) {
         display: none !important;
     }
 }
 
-.loginm {
+.MyDropdown1 {
     display: flex;
-    justify-content: left;
+    justify-content: right;
+}
 
-    @media (min-width: 992px) {
-        display: none !important;
-    }
+.left-nav-items {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-image {
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 50%;
+}
+
+.triple-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 40px !important;
+    font-size: 30px !important;
 }

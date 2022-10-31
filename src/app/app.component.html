@@ -1,37 +1,66 @@
-<nav class="navbar navbar-expand-lg bg-dark user-select-none">
+<nav class="navbar navbar-expand bg-dark user-select-none">
   <div class="container-fluid">
     <a class="navbar-brand text-white" routerLink="/">Notepad</a>
-    <div class="mobile-screens">
-      <span *ngIf="theme === 'light-theme'" class="bi bi-moon-stars text-white" (click)="switchTheme()"></span>
-      <span *ngIf="theme === 'dark-theme'" class="bi bi-sun" (click)="switchTheme()"></span>
-    </div>
-    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon navbar-dark"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active text-white mx-3" aria-current="page" routerLink="/about">About</a>
-        </li>
-        <li class="nav-item d-flex justify-content-right align-items-center laptop-screens">
+    <a class="nav-item dropdown-item laptop-screens" aria-current="page" routerLink="/about">About</a>
+    <ul class="navbar-nav">
+      <div class="left-nav-items">
+        <li class="nav-item d-flex justify-content-right align-items-center mx-3">
+
           <span *ngIf="theme === 'light-theme'" class="bi bi-moon-stars text-white" (click)="switchTheme()"></span>
+
           <span *ngIf="theme === 'dark-theme'" class="bi bi-sun" (click)="switchTheme()"></span>
+
         </li>
-        <!-- <li class="nav-item loginm">
-          <button class="nav-link btn btn-primary disabled text-white text-center px-3" aria-current="page"
-            routerLink="">Login</button>
-        </li> -->
-      </ul>
-      <!-- <form class="d-flex" role="search">
+
+        <li *ngIf="auth.user$ | async as user; else anonymousUser" class="nav-item dropdown MyDropdown1">
+
+          <div class="d-flex align-items-center">
+            <img class="user-image" *ngIf="user.photoURL" [src]="user.photoURL" />
+          </div>
+
+          <a mat-button [matMenuTriggerFor]=" menu" class="nav-link dropdown-toggle text-white laptop-screens" id="
+            navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{user.displayName}}
+          </a>
+
+          <mat-menu class="laptop-screens" #menu="matMenu">
+            <a class="dropdown-item mobile-screens" mat-menu-item aria-current="page" routerLink="/about">About</a>
+            <a class="dropdown-item text-danger" (click)="logout()" mat-menu-item>Log Out</a>
+          </mat-menu>
+
+        </li>
+
+        <li class="nav-item dropdown MyDropdown1 mobile-screens">
+
+          <mat-icon class="nav-link text-white triple-dots" mat-button [matMenuTriggerFor]=" menu">
+            more_vert
+          </mat-icon>
+
+          <mat-menu class="mobile-screens" #menu="matMenu">
+            <a class="dropdown-item" mat-menu-item aria-current="page" routerLink="/about">About</a>
+            <a *ngIf="auth.user$ | async as user" class="dropdown-item text-danger" (click)="logout()" mat-menu-item>Log
+              Out</a>
+          </mat-menu>
+
+        </li>
+
+        <ng-template #anonymousUser>
+
+          <li class="nav-item mx-2">
+            <button class="nav-link btn btn-primary text-white px-3" aria-current="page"
+              routerLink="/login">Login</button>
+          </li>
+
+        </ng-template>
+      </div>
+    </ul>
+    <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-primary btn-outline-success text-white" type="submit">Search</button>
       </form> -->
-    </div>
-    <!-- <li class="nav-item navbar-nav mb-2 mb-lg-0 loginl laptop-screens">
-      <button class="nav-link btn btn-primary disabled text-white mx-3 px-3" aria-current="page"
-        routerLink="">Login</button>
+    <!-- <li class="nav-item navbar-nav mb-2 mb-lg-0 laptop-screens">
+      <button class="nav-link btn btn-primary text-white mx-3 px-3" aria-current="page"
+        routerLink="/login">Login</button>
     </li> -->
   </div>
 </nav>

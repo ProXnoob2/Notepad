@@ -14,14 +14,14 @@
 
 <section *ngIf="!addNoteSection && !editNoteSection">
 
-    <h3 class="container my-4 text-center">Your Notes</h3>
+    <h3 class="container my-4 text-center user-select-none">Your Notes</h3>
 
     <div *ngIf="this.notes.length===0; else elseBlock">
-        <h5 class="container text-center">No Notes To Display</h5>
+        <h5 class="container text-center user-select-none">No Notes To Display</h5>
     </div>
 
     <ng-template #elseBlock>
-        <div class=" center-block clearall">
+        <div class=" center-block clearall user-select-none">
             <button class="btn btn-warning btn-sm my-2 mb-4" (click)="openConfirmationDialog(0)">Clear All</button>
         </div>
         <ul class="container" *ngFor="let note of notes; let i= index">
@@ -31,7 +31,7 @@
         </ul>
     </ng-template>
 
-    <div class="display-5 bg-danger rounded-circle position-fixed icon" (click)="adeeb()">
+    <div class="display-5 bg-danger rounded-circle position-fixed icon user-select-none" (click)="adeeb()">
         <mat-icon>add</mat-icon>
     </div>
 
