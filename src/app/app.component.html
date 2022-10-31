@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand bg-dark user-select-none">
   <div class="container-fluid">
     <a class="navbar-brand text-white" routerLink="/">Notepad</a>
-    <a class="nav-item dropdown-item laptop-screens" aria-current="page" routerLink="/about">About</a>
+    <a class="nav-item dropdown-item laptop-screens text-white" aria-current="page" routerLink="/about">About</a>
     <ul class="navbar-nav">
       <div class="left-nav-items">
         <li class="nav-item d-flex justify-content-right align-items-center mx-3">
@@ -25,6 +25,7 @@
 
           <mat-menu class="laptop-screens" #menu="matMenu">
             <a class="dropdown-item mobile-screens" mat-menu-item aria-current="page" routerLink="/about">About</a>
+            <a *ngIf="isAdmin" class="dropdown-item text-white" routerLink="/admin" mat-menu-item>Admin</a>
             <a class="dropdown-item text-danger" (click)="logout()" mat-menu-item>Log Out</a>
           </mat-menu>
 
@@ -37,7 +38,8 @@
           </mat-icon>
 
           <mat-menu class="mobile-screens" #menu="matMenu">
-            <a class="dropdown-item" mat-menu-item aria-current="page" routerLink="/about">About</a>
+            <a class="dropdown-item text-white" mat-menu-item aria-current="page" routerLink="/about">About</a>
+            <a *ngIf="isAdmin" class="dropdown-item text-white" routerLink="/admin" mat-menu-item>Admin</a>
             <a *ngIf="auth.user$ | async as user" class="dropdown-item text-danger" (click)="logout()" mat-menu-item>Log
               Out</a>
           </mat-menu>

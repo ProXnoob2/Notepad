@@ -25,6 +25,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AuthService } from './Services/auth-service/auth.service';
 import { UserService } from './Services/user-service/user.service';
+import { AdminComponent } from './MyComponents/admin/admin.component';
+import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-guard.service';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { UserService } from './Services/user-service/user.service';
     EditNoteComponent,
     AboutComponent,
     ConfirmationDialogComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     MatIconModule,
@@ -58,6 +61,7 @@ import { UserService } from './Services/user-service/user.service';
   providers: [
     AuthService,
     UserService,
+    AdminAuthGuardService,
   ],
   bootstrap: [AppComponent]
 })

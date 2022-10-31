@@ -1,6 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-guard.service';
 import { AuthService } from './Services/auth-service/auth.service';
 import { UserService } from './Services/user-service/user.service';
 
@@ -12,9 +14,13 @@ import { UserService } from './Services/user-service/user.service';
 })
 export class AppComponent implements OnInit {
 
+  isAdmin: boolean = false;
+  adminSubscription!: Subscription;
+
   theme: Theme = 'dark-theme';
 
   constructor(
+    private adminAuth: AdminAuthGuardService,
     private userService: UserService,
     private router: Router,
     public auth: AuthService,
@@ -29,6 +35,11 @@ export class AppComponent implements OnInit {
         router.navigateByUrl(returnUrl);
       }
     })
+    this.adminSubscription = adminAuth.canActivate().subscribe((res) => {
+      if (res) {
+        this.isAdmin = res;
+      }
+    });
   }
 
   ngOnInit() {

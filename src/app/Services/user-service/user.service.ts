@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 import firebase from 'firebase/compat/app';
+import { AppUser } from 'src/app/Models/app-user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class UserService {
       email: user.email,
       photo: user.photoURL,
     });
+  }
+
+  get(uid: string): AngularFireObject<AppUser> {
+    return this.db.object('/users/' + uid);
   }
 }
