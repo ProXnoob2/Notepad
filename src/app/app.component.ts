@@ -1,9 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ConfirmationDialogComponent } from './MyComponents/notepads/confirmation-dialog/confirmation-dialog.component';
 import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-guard.service';
 import { AuthService } from './Services/auth-service/auth.service';
+import { LoaderService } from './Services/loader-service/loader.service';
 import { UserService } from './Services/user-service/user.service';
 
 @Component({
@@ -23,21 +26,37 @@ export class AppComponent implements OnInit {
     private adminAuth: AdminAuthGuardService,
     private userService: UserService,
     private router: Router,
+    private loaderService: LoaderService,
     public auth: AuthService,
+    private dialog: MatDialog,
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
   ) {
     auth.user$.subscribe(user => {
-      if (user) {
-        userService.save(user);
+      if (!user) return;
 
-        let returnUrl: any = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
-      }
-    })
+      userService.save(user);
+
+      let returnUrl = localStorage.getItem('returnUrl') as string;
+
+      if (!returnUrl) return;
+      localStorage.removeItem('returnUrl')
+      router.navigateByUrl(returnUrl);
+    });
+
     this.adminSubscription = adminAuth.canActivate().subscribe((res) => {
       if (res) {
         this.isAdmin = res;
+      }
+    });
+
+    this.loaderService.loadData('Loading...');
+    auth.user$.subscribe((user) => {
+      if (user) {
+        userService.save(user);
+        this.loaderService.unloadData('Loading...');
+      } else {
+        this.loaderService.unloadData('Loading...');
       }
     });
   }
@@ -55,6 +74,19 @@ export class AppComponent implements OnInit {
         ? (this.theme = 'dark-theme')
         : (this.theme = 'light-theme')
     );
+  }
+
+  openConfirmationDialog() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: { isLogout: true }
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.logout()
+      }
+    })
   }
 
   logout() {

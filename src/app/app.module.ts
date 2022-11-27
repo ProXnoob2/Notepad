@@ -27,7 +27,15 @@ import { AuthService } from './Services/auth-service/auth.service';
 import { UserService } from './Services/user-service/user.service';
 import { AdminComponent } from './MyComponents/admin/admin.component';
 import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-guard.service';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+import { NotesService } from './Services/notes-service/notes.service';
+import { LoaderService } from './Services/loader-service/loader.service';
+import { LoaderComponent } from './MyComponents/loader/loader.component';
 
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +47,8 @@ import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-gu
     AboutComponent,
     ConfirmationDialogComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    LoaderComponent
   ],
   imports: [
     MatIconModule,
@@ -57,11 +66,14 @@ import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-gu
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [
     AuthService,
     UserService,
     AdminAuthGuardService,
+    NotesService,
+    LoaderService,
   ],
   bootstrap: [AppComponent]
 })

@@ -7,9 +7,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./confirmation-dialog.component.scss']
 })
 export class ConfirmationDialogComponent implements OnInit {
+  isLogout: boolean = false
 
   constructor(private dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { number: number }) { }
+    @Inject(MAT_DIALOG_DATA) public data: { number: number, isLogout: boolean }) {
+    if (data.isLogout) this.isLogout = data.isLogout
+  }
 
   ngOnInit(): void {
   }

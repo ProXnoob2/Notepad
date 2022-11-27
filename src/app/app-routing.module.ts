@@ -11,6 +11,8 @@ import { AdminAuthGuardService } from './Services/admin-auth-guard/admin-auth-gu
 const routes: Routes = [
   { path: '', component: NotepadsComponent },
   { path: 'about', component: AboutComponent },
+  // { path: 'add', component: AddNoteComponent },
+  // { path: 'edit', component: EditNoteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuardService] },
 ];

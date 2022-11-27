@@ -26,7 +26,7 @@
           <mat-menu class="laptop-screens" #menu="matMenu">
             <a class="dropdown-item mobile-screens" mat-menu-item aria-current="page" routerLink="/about">About</a>
             <a *ngIf="isAdmin" class="dropdown-item text-white" routerLink="/admin" mat-menu-item>Admin</a>
-            <a class="dropdown-item text-danger" (click)="logout()" mat-menu-item>Log Out</a>
+            <a class="dropdown-item text-danger" (click)="openConfirmationDialog()" mat-menu-item>Log Out</a>
           </mat-menu>
 
         </li>
@@ -40,7 +40,8 @@
           <mat-menu class="mobile-screens" #menu="matMenu">
             <a class="dropdown-item text-white" mat-menu-item aria-current="page" routerLink="/about">About</a>
             <a *ngIf="isAdmin" class="dropdown-item text-white" routerLink="/admin" mat-menu-item>Admin</a>
-            <a *ngIf="auth.user$ | async as user" class="dropdown-item text-danger" (click)="logout()" mat-menu-item>Log
+            <a *ngIf="auth.user$ | async as user" class="dropdown-item text-danger" (click)="openConfirmationDialog()"
+              mat-menu-item>Log
               Out</a>
           </mat-menu>
 

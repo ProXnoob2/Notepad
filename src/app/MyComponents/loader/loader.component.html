@@ -1,0 +1,17 @@
+<mat-dialog-content>
+    <div class="flex flex-wrap overflow-hidden">
+        <div class="overflow-hidden spinner-div mb-2 vertical-align flex justify-center">
+            <!-- <mat-spinner [diameter]="50"></mat-spinner> -->
+            <ng-lottie [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        </div>
+
+        <div class="overflow-hidden text-center">
+            <p *ngIf="message && message.length > 0" class="text-center">
+                {{ message }}
+            </p>
+            <p *ngIf="message && message.length === 0" class="text-center">
+                Getting data...
+            </p>
+        </div>
+    </div>
+</mat-dialog-content>
